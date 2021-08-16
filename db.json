@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Christoffer Nielsen"
+    },
+    {
+      "id": 2,
+      "name": "Daniel"
+    }
+  ],
+  "translations": [
+    {
+      "user_id": 1,
+      "phrase": "Hello aosdhiasdi asid haiuh diuai daig",
+      "isDeleted": "true"
+    },
+    {
+      "user_id": 1,
+      "phrase": "Kebab",
+      "isDeleted": "true"
+    },
+    {
+      "user_id": 1,
+      "phrase": "Goodbye",
+      "isDeleted": "true"
+    },
+    {
+      "user_id": 2,
+      "phrase": "Goodbye",
+      "isDeleted": "false"
+    }
+  ]
+}
