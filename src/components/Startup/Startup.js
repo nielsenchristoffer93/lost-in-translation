@@ -2,7 +2,10 @@ import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootst
 import { useHistory } from "react-router-dom";
 
 
+
 function Startup() {
+    const history = useHistory();
+    const handleClick = () => history.push('/translation');
 
     return (
 
@@ -28,6 +31,8 @@ function Startup() {
                             </Col>
                         </Row>
                         <Row>
+                            <button onClick={handleClick}>Translate</button>
+
                             <Button variant="primary" >Go to translation</Button>
                         </Row>
 
