@@ -1,4 +1,6 @@
-# lost-in-translation
+# Lost in translation
+
+An online sign language translator as a Single Page Application using the React framework.
 
 # Getting Started with Create React App
 
