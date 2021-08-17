@@ -31,9 +31,7 @@ function Startup() {
                             </Col>
                         </Row>
                         <Row>
-                            <button onClick={handleClick}>Translate</button>
-
-                            <Button variant="primary" >Go to translation</Button>
+                            <Button variant="primary" onClick={handleClick}>Go to translation</Button>
                         </Row>
 
                     </Col>
