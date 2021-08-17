@@ -1,6 +1,5 @@
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
-import NavBarUser from "../hoc/NavBarUser";
 
 function NotFound() {
   return (

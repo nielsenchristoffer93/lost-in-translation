@@ -1,26 +1,37 @@
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getStorage } from "../../storage";
 
 function NavBarUser() {
+  const [username, setUsername] = useState({
+    username: "",
+  });
 
-    return (
-        <Row>
-              <Col xs={8}>
-                <Link to="/profile">
-                  <p>Username</p>
-                </Link>
-              </Col>
-              <Col xs={2}>
-                <Link to="/profile">
-                  <span class="material-icons-sharp">account_circle</span>
-                </Link>
-              </Col>
-              <Col xs={2}>
-                <Link to="/">
-                  <span class="material-icons-sharp">logout</span>
-                </Link>
-              </Col>
-        </Row>
-    )
+  useEffect(() => {
+    setUsername({
+      "username": getStorage("username")
+    });
+  }, []);
 
-} export default NavBarUser
+  return (
+    <Row>
+      <Col xs={8}>
+        <Link to="/profile">
+          <p>{username.username}</p>
+        </Link>
+      </Col>
+      <Col xs={2}>
+        <Link to="/profile">
+          <span class="material-icons-sharp">account_circle</span>
+        </Link>
+      </Col>
+      <Col xs={2}>
+        <Link to="/">
+          <span class="material-icons-sharp">logout</span>
+        </Link>
+      </Col>
+    </Row>
+  );
+}
+export default NavBarUser;

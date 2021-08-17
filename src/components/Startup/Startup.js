@@ -7,8 +7,22 @@ import {
   Row,
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { setStorage } from "../../storage";
 
 function Startup() {
+
+  /*const [username, setUsername] = useState({
+    username: ""
+  });*/
+
+  const onInputChange = event => {
+      /*setUsername({
+        [event.target.id]: event.target.value
+      })*/
+      setStorage("username", event.target.value)
+  }
+
   const history = useHistory();
   const handleClick = () => history.push("/translation");
 
@@ -31,9 +45,11 @@ function Startup() {
               <Col>
                 <InputGroup className="input-container">
                   <FormControl className="input"
+                    id="username"
                     placeholder="What's your name?"
                     aria-label="username"
                     aria-describedby="basic-addon"
+                    onChange={ onInputChange }
                   />
                   <Button
                     variant="dark"
