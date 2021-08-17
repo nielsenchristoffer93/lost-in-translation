@@ -2,7 +2,6 @@ import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootst
 import { useHistory } from "react-router-dom";
 
 
-
 function Startup() {
     const history = useHistory();
     const handleClick = () => history.push('/translation');
@@ -21,7 +20,7 @@ function Startup() {
                         <Row>
                             <Col>
                                 <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                    <InputGroup.Text id="basic-addon1"><img className="Logo" src={'resources/Logo.png' } width ='50'></img></InputGroup.Text>
                                     <FormControl
                                         placeholder="What's your name bitch? "
                                         aria-label="Username"

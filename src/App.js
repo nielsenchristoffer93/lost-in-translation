@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Translation from "./components/Translation/Translation";
 import Profile from "./components/Profile/Profile";
 
+
 function App() {
   return (
     <BrowserRouter>

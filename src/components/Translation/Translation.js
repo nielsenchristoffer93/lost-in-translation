@@ -19,7 +19,7 @@ function Translation() {
                         <Row>
                             <Col>
                                 <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                    <InputGroup.Text id="basic-addon1"><span className="material-icons-round">translate</span></InputGroup.Text>
                                     <FormControl
                                         placeholder="Translate something cool "
                                         aria-label="Username"

@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
 
+
 function Profile() {
     const history = useHistory();
     const handleClick = () => history.push('/translation');
@@ -18,7 +19,7 @@ function Profile() {
                 </Row>
                 <Row>
                     <Col>
-                        User Translation history
+                       <h2>User Translation history</h2> 
                     </Col>
                 </Row>
                 <Row>
