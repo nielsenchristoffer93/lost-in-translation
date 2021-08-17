@@ -1,15 +1,16 @@
-import { Link } from "react-router-dom";
+import NavBar from "../hoc/NavBar";
+import CenterContainer from "../hoc/CenterContainer";
 
 function NotFound() {
-
-    return (
-        <main className="NotFound">
-            <h4>Hey you seem lost.</h4>
-            <p>This page doesn't exist.</p>
-            <Link to="/">Go to start page</Link>
-        </main>
-    );
-
+  return (
+    <div>
+      <NavBar></NavBar>
+      <CenterContainer>
+        <h4>Hey you seem lost.</h4>
+        <p>This page doesn't exist.</p>
+      </CenterContainer>
+    </div>
+  );
 }
 
 export default NotFound;

@@ -1,54 +1,76 @@
-import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  FormControl,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-
-
+import { useState } from "react";
+import { setStorage } from "../../storage";
 
 function Startup() {
-    const history = useHistory();
-    const handleClick = () => history.push('/translation');
+  const history = useHistory();
+  /*const [username, setUsername] = useState({
+    username: ""
+  });*/
 
-    return (
+  const onInputChange = (event) => {
+    /*setUsername({
+        [event.target.id]: event.target.value
+      })*/
+    setStorage("username", event.target.value);
+  };
 
-        <main className="Startup">
-            <Container>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Row>
-                            <Col>Icon</Col>
-                            <Col>Welcome phrase</Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                    <FormControl
-                                        placeholder="What's your name bitch? "
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                    />
-                                </InputGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <button onClick={handleClick}>Translate</button>
+  const handleGoToTranslationClicked = () => {
+    // Check if user exists in database, if it does, go to translation page.
+    // If it doesn't, add it to the database.
+    history.push("/translation");
+  };
 
-                            <Button variant="primary" >Go to translation</Button>
-                        </Row>
-
-                    </Col>
-                    <Col>
-                        --
-                    </Col>
-                </Row>
-
-            </Container>
-        </main>
-    )
-
+  return (
+    <main className="Startup">
+      <Container>
+        <Row className="center-row">
+          <Col xs={3}></Col>
+          <Col xs={6}>
+            <Row>
+              <Col xs={3} className="icon-col">
+                <span class="material-icons-sharp icon">translate</span>
+              </Col>
+              <Col xs={9}>
+                <h1>Lost in Translation</h1>
+                <p>Get started</p>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <InputGroup className="input-container">
+                  <FormControl
+                    className="input"
+                    id="username"
+                    placeholder="What's your name?"
+                    aria-label="username"
+                    aria-describedby="basic-addon"
+                    onChange={onInputChange}
+                  />
+                  <Button
+                    variant="dark"
+                    id="button-addon"
+                    onClick={handleGoToTranslationClicked}
+                  >
+                    <span class="material-icons-sharp">arrow_forward</span>
+                  </Button>
+                </InputGroup>
+              </Col>
+            </Row>
+          </Col>
+          <Col xs={3}></Col>
+        </Row>
+      </Container>
+    </main>
+  );
 }
 
-
-
-
-export default Startup
+export default Startup;
