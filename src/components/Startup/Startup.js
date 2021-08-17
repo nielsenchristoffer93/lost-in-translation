@@ -12,7 +12,9 @@ import { setStorage } from "../../storage";
 
 function Startup() {
   const history = useHistory();
-  /*const [username, setUsername] = useState();*/
+  /*const [username, setUsername] = useState({
+    username: ""
+  });*/
 
   const onInputChange = (event) => {
     /*setUsername({
