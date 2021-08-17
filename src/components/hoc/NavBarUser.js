@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
 
 function NavBarUser() {
-  const [username, setUsername] = useState(0);
+  const [username, setUsername] = useState();
 
   useEffect(() => {
     setUsername(getStorage("username"));

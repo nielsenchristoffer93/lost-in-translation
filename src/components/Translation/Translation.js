@@ -24,7 +24,9 @@ function Translation() {
           </InputGroup>
         </Row>
         <Card className="card-container">
-          <Card.Header><p>Word</p></Card.Header>
+          <Card.Header>
+            <p>Word</p>
+          </Card.Header>
           <Card.Body>
             <img
               className="sign-img"
