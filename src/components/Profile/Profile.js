@@ -15,7 +15,7 @@ function Translation() {
           <Card.Body>
             <img
               className="sign-img"
-              src={"/resources/individial_signs/a.png"}
+              src={`/resources/individial_signs/${"c"}.png`}
               alt="a.png"
             />
           </Card.Body>
@@ -25,7 +25,7 @@ function Translation() {
           <Card.Body>
             <img
               className="sign-img"
-              src={"/resources/individial_signs/a.png"}
+              src={`/resources/individial_signs/${"e"}.png`}
               alt="a.png"
             />
           </Card.Body>
@@ -35,7 +35,7 @@ function Translation() {
           <Card.Body>
             <img
               className="sign-img"
-              src={"/resources/individial_signs/a.png"}
+              src={`/resources/individial_signs/${"d"}.png`}
               alt="a.png"
             />
           </Card.Body>

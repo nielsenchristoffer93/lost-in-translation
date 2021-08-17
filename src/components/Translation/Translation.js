@@ -8,7 +8,7 @@ function Translation() {
       <NavBar></NavBar>
       <CenterContainer>
         <Row>
-          <InputGroup className="mb-3">
+          <InputGroup>
             <FormControl
               className="input"
               placeholder="What would you like to translate?"
@@ -20,12 +20,12 @@ function Translation() {
             </Button>
           </InputGroup>
         </Row>
-        <Card>
+        <Card className="card-container">
           <Card.Header><p>Word</p></Card.Header>
           <Card.Body>
             <img
               className="sign-img"
-              src={"/resources/individial_signs/a.png"}
+              src={`/resources/individial_signs/${"c"}.png`}
               alt="a.png"
             />
           </Card.Body>
