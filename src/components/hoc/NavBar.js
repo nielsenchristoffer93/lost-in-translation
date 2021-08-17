@@ -1,34 +1,19 @@
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CenterContainer from "./CenterContainer";
 
-function NavBar() {
+function NavBar(props) {
   return (
     <nav>
       <CenterContainer>
         <Row>
           <Col xs={9}>
-            <a href="/">
-              <h5>Lost in Translation</h5>
-            </a>
+            <Link to="/">
+              <h4>Lost in Translation</h4>
+            </Link>
           </Col>
           <Col xs={3} className="username-container">
-            <Row>
-              <Col xs={8}>
-                <a href={"/profile"}>
-                  <p>Username</p>
-                </a>
-              </Col>
-              <Col xs={2}>
-                <a href={"/profile"}>
-                  <span class="material-icons-sharp">account_circle</span>
-                </a>
-              </Col>
-              <Col xs={2}>
-                <a href={"/"}>
-                  <span class="material-icons-sharp">logout</span>
-                </a>
-              </Col>
-            </Row>
+            {props.children}
           </Col>
         </Row>
       </CenterContainer>

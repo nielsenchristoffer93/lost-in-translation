@@ -1,11 +1,14 @@
 import { Button, Card } from "react-bootstrap";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
+import NavBarUser from "../hoc/NavBarUser";
 
 function Translation() {
   return (
     <main className="Translation">
-      <NavBar></NavBar>
+      <NavBar>
+        <NavBarUser></NavBarUser>
+      </NavBar>
       <CenterContainer>
         <div className="d-grid gap-2">
           <Button variant="dark">Clear Translations</Button>
