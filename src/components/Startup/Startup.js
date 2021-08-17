@@ -21,21 +21,23 @@ function Startup() {
           return res.json();
         })
         .then(data => setUsers(data))
+        .then(checkForUser)
 
-      const checkForUser = () =>{
-      if(!(getStorage('username') === false)){
-        console.log(getStorage('username') === false)
-        setUserName(getStorage('username'));
-        for (let i = 0; i < users.length ; i++) {
-          if(users[i].name === userName){
-            history.push("/translation");
-            break;
-          }
+
+  },[userName])
+
+  const checkForUser = () =>{
+    if(!(getStorage('username') === false)){
+      setUserName(getStorage('username'));
+      for (let i = 0; i < users.length ; i++) {
+        if(users[i].name === userName){
+          console.log(users[i].name) // console log
+          history.push("/translation");
+          break;
         }
       }
     }
-      checkForUser()
-  },[])
+  }
 
   const onInputChange = (event) => {
     /*setUsername({
@@ -45,6 +47,7 @@ function Startup() {
     setStorage("username", event.target.value);
 
   };
+
 
   const handleGoToTranslationClicked = () => {
     // Check if user exists in database, if it does, go to translation page.
