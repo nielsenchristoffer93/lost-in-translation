@@ -6,7 +6,6 @@ import NavBarUser from "../hoc/NavBarUser";
 import SignImage from "./SignImage";
 
 function Translation() {
-  //let letterArray = [];
   let listOfSignImages = [];
 
   const [stringToTranslate, setStringToTranslate] = useState("");

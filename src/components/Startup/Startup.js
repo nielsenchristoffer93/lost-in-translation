@@ -7,24 +7,61 @@ import {
   Row,
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
-import { setStorage } from "../../storage";
+import {useEffect, useState} from "react";
+import { setStorage, getStorage } from "../../storage";
 
 function Startup() {
   const history = useHistory();
-  /*const [username, setUsername] = useState({
-    username: ""
-  });*/
+  const [userName, setUserName] = useState("");
+  const [users, setUsers] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:3000/users')
+        .then(res =>{
+          return res.json();
+        })
+        .then(data => setUsers(data))
+
+      const checkForUser = () =>{
+      if(!(getStorage('username') === false)){
+        console.log(getStorage('username') === false)
+        setUserName(getStorage('username'));
+        for (let i = 0; i < users.length ; i++) {
+          if(users[i].name === userName){
+            history.push("/translation");
+            break;
+          }
+        }
+      }
+    }
+      checkForUser()
+  },[])
 
   const onInputChange = (event) => {
     /*setUsername({
         [event.target.id]: event.target.value
       })*/
+    setUserName(event.target.value)
     setStorage("username", event.target.value);
+
   };
 
   const handleGoToTranslationClicked = () => {
     // Check if user exists in database, if it does, go to translation page.
+    fetch('http://localhost:3000/users', {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: getStorage('username')
+      })
+    })
+        .then( (response) => {
+          //do something awesome that makes the world a better place
+          console.log(response)
+        });
     // If it doesn't, add it to the database.
     history.push("/translation");
   };
