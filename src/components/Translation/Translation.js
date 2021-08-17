@@ -14,6 +14,7 @@ function Translation() {
                         <Row>
                             <Col>Icon</Col>
                             <Col>This is the translation page.</Col>
+                            
                         </Row>
                         <Row>
                             <Col>
@@ -29,12 +30,12 @@ function Translation() {
                         </Row>
                         <Row>
                         <Button variant="primary" onClick={handleClickTranslate}>Translate </Button>
-                        <Button variant="primary" onClick={handleClick}>Go to Profile </Button>
+                        
                         </Row>
 
                     </Col>
                     <Col>
-                        --
+                    <Button variant="primary" onClick={handleClick}>Go to Profile </Button>
                     </Col>
                 </Row>
 

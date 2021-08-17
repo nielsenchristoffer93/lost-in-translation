@@ -6,10 +6,35 @@ function Profile() {
     const handleClick = () => history.push('/translation');
     const handleClickLogOut = () => history.push('/'); //delete data too
     return(
-        <main className="Profile">
-            <h1>This is the user page</h1>
-            <Button variant="primary" onClick={handleClick}>Translate again</Button>
+        <main className="Profile"><Container>
+        <Row>
+            <Col></Col>
+            <Col>
+        
+                <Row>
+                
+                    <Col>Icon</Col>
+                    <Col>Welcome phrase</Col>
+                </Row>
+                <Row>
+                    <Col>
+                        User Translation history
+                    </Col>
+                </Row>
+                <Row>
+                    <Button variant="primary" onClick={handleClick}>Translate again</Button>
+                    
+                </Row>
+
+            </Col>
+            <Col>
             <Button variant="primary" onClick={handleClickLogOut}>Logout</Button>
+            </Col>
+        </Row>
+
+    </Container>
+            
+            
 
         </main>
     );
