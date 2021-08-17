@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+
 function Startup() {
   const history = useHistory();
   const handleClick = () => history.push("/translation");
@@ -51,6 +52,7 @@ function Startup() {
       </Container>
     </main>
   );
+
 }
 
 export default Startup;

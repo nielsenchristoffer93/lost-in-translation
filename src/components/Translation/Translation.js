@@ -1,9 +1,15 @@
+
 import { Row, InputGroup, FormControl, Button, Card } from "react-bootstrap";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
+import { useHistory } from "react-router-dom";
+
 
 function Translation() {
+  const history = useHistory();
+    const handleClick = () => history.push('/Profile');
+    const handleClickTranslate = () => console.log("TRANSLATED"); //placeholder
   return (
     <main className="Translation">
       <NavBar>
@@ -33,9 +39,12 @@ function Translation() {
             />
           </Card.Body>
         </Card>
+         <Button variant="primary" onClick={handleClick}>Go to Profile </Button>
+         <Button variant="primary" onClick={handleClickTranslate}>Translate </Button>
       </CenterContainer>
     </main>
   );
+
 }
 
 export default Translation;

@@ -1,11 +1,14 @@
+
 import { Button, Card } from "react-bootstrap";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
+import { useHistory } from "react-router-dom";
+import {Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
 
-function Translation() {
+function Profile() {
   return (
-    <main className="Translation">
+    <main className="Profile">
       <NavBar>
         <NavBarUser></NavBarUser>
       </NavBar>
@@ -43,9 +46,12 @@ function Translation() {
             />
           </Card.Body>
         </Card>
+        <Button variant="primary" onClick={handleClick}>Translate again</Button>
+        <Button variant="primary" onClick={handleClickLogOut}>Logout</Button>
       </CenterContainer>
     </main>
   );
 }
 
-export default Translation;
+export default Profile;
+
