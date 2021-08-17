@@ -4,21 +4,17 @@ import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
 
 function NavBarUser() {
-  const [username, setUsername] = useState({
-    username: "",
-  });
+  const [username, setUsername] = useState(0);
 
   useEffect(() => {
-    setUsername({
-      "username": getStorage("username")
-    });
+    setUsername(getStorage("username"));
   }, []);
 
   return (
     <Row>
       <Col xs={8}>
         <Link to="/profile">
-          <p>{username.username}</p>
+          <p>{username}</p>
         </Link>
       </Col>
       <Col xs={2}>
