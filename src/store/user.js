@@ -1,19 +1,34 @@
 import { combineReducers } from "redux";
 
 const ADD_USER = 'ADD_USER';
+const INCREMENT_USER_ID = 'INCREMENT_USER_ID';
+const user_id = {};
 
-export function addUser(user){
+
+/*export function addUser(user){
     return{
         type: ADD_USER,
         user
     }
 }
-export function incrementUserId(user){
+*/
+export const addUser = (username) => ({
+    type: 'ADD_USER',
+    payload: username,
+});
+
+/*export function incrementUserId(user){
     return{
         type: INCREMENT_USER,
         user
     }
 }
+*/
+export const incrementUserId = (previousUserId) => ({
+    type: 'INCREMENT_USER_ID',
+    payload: previousUserId,
+});
+
 const defaultUsers = [
     {
         user_id: 1,
@@ -27,20 +42,19 @@ function users(state = defaultUsers, action){
                 ...state,
                 {
                     user_id: 1, //must update
-                    name: action.user
+                    name: action.payload
                 }
             ];
-        case INCREMENT_USER:
+        case INCREMENT_USER_ID:
             const user = state.find(b => action.user === b.name);
             const users = state.filter(b => action.user !== b.name);
             return[
                 ...users,
                 {
                     ...user,
-                    user_id: user_id + 1
+                    user_id: action.payload + 1
                 }
             ];
-            return state;    
         default:
             return state;
     }
@@ -48,7 +62,9 @@ function users(state = defaultUsers, action){
 }
 
 const userApp = combineReducers({
-    users
+    addUser,
+    users,
+    incrementUserId
 });
 
 export default userApp;

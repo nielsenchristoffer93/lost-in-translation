@@ -10,11 +10,19 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { setStorage } from "../../storage";
 import { useDispatch, useSelector } from "react-redux";
-import {incrementUserId} from "./store/user";
+import {incrementUserId ,addUser} from "../../store/user";
+
 
 function Startup() {
+  const [userName, setName] = useState('');
   const users = useSelector(state => state.users);
   const dispatch = useDispatch();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(addUser(userName))
+    setName('');
+  };
 
   const history = useHistory();
   /*const [username, setUsername] = useState({
@@ -60,6 +68,16 @@ function Startup() {
                     aria-describedby="basic-addon"
                     onChange={onInputChange}
                   />
+                  <FormControl
+                    onSubmit ={handleSubmit}
+                    className="input"
+                    id="username"
+                    placeholder="Redux Name?"
+                    aria-label="username"
+                    aria-describedby="basic-addon"
+                    onChange={e => setName(e.target.value)}
+                    value ={userName}
+                  />
                   <Button
                     variant="dark"
                     id="button-addon"
@@ -70,10 +88,11 @@ function Startup() {
                   <Button
                   variant="dark"
                   id="button-addon"
-                  onClick={() => dispatch(incrementUserId(user.name))}
+                  //onClick={() => dispatch(incrementUserId(user.name))}
                   >
                     REDUX
                   </Button>
+                  
 
               
 
