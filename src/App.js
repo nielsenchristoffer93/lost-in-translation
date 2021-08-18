@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Startup from "./components/Startup/Startup";
 import NotFound from "./components/NotFound/NotFound";
 import Translation from "./components/Translation/Translation";

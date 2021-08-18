@@ -9,8 +9,13 @@ import {
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { setStorage } from "../../storage";
+import { useDispatch, useSelector } from "react-redux";
+import {incrementUserId} from "./store/user";
 
 function Startup() {
+  const users = useSelector(state => state.users);
+  const dispatch = useDispatch();
+
   const history = useHistory();
   /*const [username, setUsername] = useState({
     username: ""
@@ -62,6 +67,16 @@ function Startup() {
                   >
                     <span class="material-icons-sharp">arrow_forward</span>
                   </Button>
+                  <Button
+                  variant="dark"
+                  id="button-addon"
+                  onClick={() => dispatch(incrementUserId(user.name))}
+                  >
+                    REDUX
+                  </Button>
+
+              
+
                 </InputGroup>
               </Col>
             </Row>
