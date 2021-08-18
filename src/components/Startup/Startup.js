@@ -6,15 +6,22 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
-import { setStorage } from "../../storage";
+import { Redirect, useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { setStorage, getStorage} from "../../storage";
 
 function Startup() {
   const history = useHistory();
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   /*const [username, setUsername] = useState({
     username: ""
   });*/
+
+  useEffect(() => {
+    if (getStorage("username")) {
+      setShouldRedirect(true);
+    }
+  }, []);
 
   const onInputChange = (event) => {
     /*setUsername({
@@ -31,6 +38,7 @@ function Startup() {
 
   return (
     <main className="Startup">
+      {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
       <Container>
         <Row className="center-row">
           <Col xs={3}></Col>
