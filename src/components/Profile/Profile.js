@@ -3,8 +3,29 @@ import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
 import CardTranslation from "../hoc/CardTranslation";
+import { useState, useEffect } from "react";
+import { getStorage } from "../../storage";
 
 function Translation() {
+
+  let [translations, setTranslations] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/translations?username=${getStorage("username")}`)
+      .then((response) => response.json())
+      .then((data) => setTranslations(data));
+
+  }, [translations]);
+
+
+  function displayCardTranslations() {
+    let cards = []
+    translations.forEach(translation => {
+      cards.push(<CardTranslation stringToTranslate={translation.phrase}></CardTranslation>);
+    });
+    return cards;
+  }
+
   return (
     <main className="Translation">
       <NavBar>
@@ -14,9 +35,10 @@ function Translation() {
         <div className="d-grid gap-2">
           <Button variant="dark">Clear Translations</Button>
         </div>
-        <CardTranslation stringToTranslate={"Test"}></CardTranslation>
+        {displayCardTranslations()}
+        {/*<CardTranslation stringToTranslate={"Test"}></CardTranslation>
         <CardTranslation stringToTranslate={"Apa"}></CardTranslation>
-        <CardTranslation stringToTranslate={"Hejsan"}></CardTranslation>
+        <CardTranslation stringToTranslate={"Hejsan"}></CardTranslation>*/}
       </CenterContainer>
     </main>
   );

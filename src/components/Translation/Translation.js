@@ -5,16 +5,13 @@ import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
 import SignImage from "./SignImage";
 import CardTranslation from "../hoc/CardTranslation";
+import { getStorage } from "../../storage"
 
 function Translation() {
-
-
   const [stringToTranslate, setStringToTranslate] = useState("");
   const [inputString, setInputString] = useState("");
 
   const [showCardTranslation, setShowCardTranslation] = useState(false);
-
-  //const [letterArray, setLetterArray] = useState([]);
 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
@@ -22,25 +19,32 @@ function Translation() {
 
   const handleTranslateStringClick = () => {
     setInputString(stringToTranslate)
-    //setLetterArray(stringToTranslate.toLowerCase().split(""));
     setShowCardTranslation(true);
+    postTranslationToDatabase();
   };
-
-  /*function displaySignImages() {
-    let listOfSignImages = []
-
-    letterArray.forEach((char) => {
-      listOfSignImages.push(
-        <SignImage letter={char}></SignImage>
-      );
-    });
-
-    return listOfSignImages;
-  }*/
 
   function displayCardTranslations() {
     return <CardTranslation stringToTranslate={inputString}></CardTranslation>
   }
+
+  function postTranslationToDatabase() {
+      fetch("http://localhost:3000/translations", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: getStorage("username"),
+          phrase: stringToTranslate,
+          isDeleted: false
+        }),
+      }).then((response) => {
+        //do something awesome that makes the world a better place
+        console.log(response);
+      });
+  }
+
 
   return (
     <main className="Translation">

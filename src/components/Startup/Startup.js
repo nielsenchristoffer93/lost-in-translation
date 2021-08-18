@@ -6,89 +6,65 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import {Redirect, useHistory} from "react-router-dom";
-import {useEffect, useState} from "react";
+import { Redirect, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { setStorage, getStorage } from "../../storage";
 
 function Startup() {
-  const history = useHistory();
   const [userName, setUserName] = useState("");
-  const [users, setUsers] = useState([]);
-  const [shouldReDirect, setShouldRedirect] = useState(false);
+  let [users, setUsers] = useState([]);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  useEffect(()=>{
-
-    const checkForUser = () => {
-      if(!(getStorage('username') === false)){
-        setUserName(getStorage('username'));
-        for (let i = 0; i < users.length ; i++) {
-          if(users[i].name === userName){
-            console.log(users[i].name) // console log
-            //history.push("/translation");
-            setShouldRedirect(true)
-            break;
-          }
+  function checkIfUserExistInSessionStorage() {
+    if (getStorage("username")) {
+      users.forEach((user) => {
+        if (userName === user.name) {
+          setShouldRedirect(true);
         }
-      }
+      });
     }
-
-    fetch('http://localhost:3000/users')
-        .then(res =>{
-          return res.json();
-        })
-        .then(data => setUsers(data))
-        .then(checkForUser)
-
-
-
-
-  },[userName])
-
-
-
+  }
 
   useEffect(() => {
-    if (getStorage("username")) {
-      setShouldRedirect(true);
-    }
-  }, []);
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data));
+
+    checkIfUserExistInSessionStorage();
+  }, [users]);
+
+  useEffect(() => {
+    setUserName(getStorage("username"))
+  }, [])
 
   const onInputChange = (event) => {
-    /*setUsername({
-        [event.target.id]: event.target.value
-      })*/
-    setUserName(event.target.value)
     setStorage("username", event.target.value);
-
   };
-
 
   const handleGoToTranslationClicked = () => {
     // Check if user exists in database, if it does, go to translation page.
-    if(!users.includes(userName)){
-    fetch('http://localhost:3000/users', {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: userName
-        //name: userName
-      })
-    })
-        .then( (response) => {
-          //do something awesome that makes the world a better place
-          console.log(response)
-        });
+    if (!users.includes(userName) && userName) {
+      fetch("http://localhost:3000/users", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: userName,
+          //name: userName
+        }),
+      }).then((response) => {
+        //do something awesome that makes the world a better place
+        console.log(response);
+      });
     }
     // If it doesn't, add it to the database.
-    history.push("/translation");
+    setShouldRedirect(true);
   };
 
   return (
     <main className="Startup">
-
       {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
       <Container>
         <Row className="center-row">

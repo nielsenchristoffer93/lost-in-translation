@@ -15,32 +15,92 @@
     {
       "name": "Roberto",
       "id": 4
+    },
+    {
+      "name": "Hejsan",
+      "id": 5
+    },
+    {
+      "name": "Christoffer",
+      "id": 6
+    },
+    {
+      "name": "Luis",
+      "id": 7
     }
   ],
   "translations": [
     {
       "id": 1,
-      "user_id": 1,
+      "username": "Hejsan",
       "phrase": "Hello aosdhiasdi asid haiuh diuai daig",
       "isDeleted": "true"
     },
     {
       "id": 2,
-      "user_id": 1,
+      "username": "Hejsan",
       "phrase": "Kebab",
       "isDeleted": "true"
     },
     {
       "id": 3,
-      "user_id": 1,
+      "username": "Hejsan",
       "phrase": "Goodbye",
       "isDeleted": "true"
     },
     {
       "id": 4,
-      "user_id": 2,
+      "username": "Hejsan",
       "phrase": "Goodbye",
       "isDeleted": "false"
+    },
+    {
+      "username": "Hejsan",
+      "phrase": "Hejsan",
+      "isDeleted": false,
+      "id": 5
+    },
+    {
+      "username": "Hejsan",
+      "phrase": "Apa",
+      "isDeleted": false,
+      "id": 6
+    },
+    {
+      "username": "Hejsan",
+      "phrase": "Groilla",
+      "isDeleted": false,
+      "id": 7
+    },
+    {
+      "username": "Hejsan",
+      "phrase": "Kean",
+      "isDeleted": false,
+      "id": 8
+    },
+    {
+      "username": "Christoffer",
+      "phrase": "Hejsan",
+      "isDeleted": false,
+      "id": 9
+    },
+    {
+      "username": "Christoffer",
+      "phrase": "Jag vill ha mat",
+      "isDeleted": false,
+      "id": 10
+    },
+    {
+      "username": "Luis",
+      "phrase": "Hej",
+      "isDeleted": false,
+      "id": 11
+    },
+    {
+      "username": "Luis",
+      "phrase": "Hejsan",
+      "isDeleted": false,
+      "id": 12
     }
   ]
 }
