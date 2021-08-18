@@ -46,6 +46,13 @@ function Startup() {
 
 
 
+
+  useEffect(() => {
+    if (getStorage("username")) {
+      setShouldRedirect(true);
+    }
+  }, []);
+
   const onInputChange = (event) => {
     /*setUsername({
         [event.target.id]: event.target.value
@@ -81,7 +88,8 @@ function Startup() {
 
   return (
     <main className="Startup">
-      {shouldReDirect ? <Redirect to="/translation"/>:null}
+
+      {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
       <Container>
         <Row className="center-row">
           <Col xs={3}></Col>

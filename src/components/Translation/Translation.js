@@ -4,42 +4,42 @@ import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
 import SignImage from "./SignImage";
+import CardTranslation from "../hoc/CardTranslation";
 
 function Translation() {
-  let listOfSignImages = [];
+
 
   const [stringToTranslate, setStringToTranslate] = useState("");
+  const [inputString, setInputString] = useState("");
 
-  const [letterArray, setLetterArray] = useState([]);
+  const [showCardTranslation, setShowCardTranslation] = useState(false);
+
+  //const [letterArray, setLetterArray] = useState([]);
 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
   };
 
   const handleTranslateStringClick = () => {
-    console.log(stringToTranslate);
-    setLetterArray(stringToTranslate.toLowerCase().split(""));
-    //letterArray = stringToTranslate.stringToTranslate.toLowerCase().split("");
-    console.log(letterArray);
-    //displaySignImages();
+    setInputString(stringToTranslate)
+    //setLetterArray(stringToTranslate.toLowerCase().split(""));
+    setShowCardTranslation(true);
   };
 
-  function displaySignImages() {
-    //let listOfSignImages = []
+  /*function displaySignImages() {
+    let listOfSignImages = []
 
     letterArray.forEach((char) => {
-      //listOfSignImages.push(<SignImage letter={char}></SignImage>);
       listOfSignImages.push(
-        <img
-          className="sign-img"
-          src={`/resources/individial_signs/${char}.png`}
-          alt={`${char}.png`}
-        />
+        <SignImage letter={char}></SignImage>
       );
     });
 
-    //console.log(listOfSignImages);
-    //return listOfSignImages;
+    return listOfSignImages;
+  }*/
+
+  function displayCardTranslations() {
+    return <CardTranslation stringToTranslate={inputString}></CardTranslation>
   }
 
   return (
@@ -67,18 +67,19 @@ function Translation() {
             </Button>
           </InputGroup>
         </Row>
-        <Card className="card-container">
+        {showCardTranslation ? displayCardTranslations() : null}
+        {/*<Card className="card-container">
           <Card.Header>
             <p>{stringToTranslate}</p>
           </Card.Header>
           <Card.Body>
-            {/*displaySignImages()*/}
+            {displaySignImages()}
             {letterArray.map((char) => (
               //<img src={i} alt={i + ".png"}></img>
               <SignImage letter={char}></SignImage>
             ))}
           </Card.Body>
-        </Card>
+        </Card>*/}
       </CenterContainer>
     </main>
   );

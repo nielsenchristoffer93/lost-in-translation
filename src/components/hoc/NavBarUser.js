@@ -1,5 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 import {Link, Redirect} from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
 
@@ -14,6 +15,7 @@ function NavBarUser() {
       sessionStorage.clear();
       return <Redirect to="/"/>
   }
+
   return (
     <Row>
       <Col xs={8}>
@@ -29,6 +31,7 @@ function NavBarUser() {
       <Col xs={2}>
         <Link to="/">
           <span class="material-icons-sharp" onClick={LogOut}>logout</span>
+
         </Link>
       </Col>
     </Row>
