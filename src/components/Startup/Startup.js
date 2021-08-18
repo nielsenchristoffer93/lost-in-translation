@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { setStorage } from "../../storage";
 import { useDispatch, useSelector } from "react-redux";
-import {incrementUserId ,addUser} from "../../store/user";
+import {addUser} from "../../store/user";
 
 
 function Startup() {
@@ -88,7 +88,11 @@ function Startup() {
                   <Button
                   variant="dark"
                   id="button-addon"
-                  //onClick={() => dispatch(incrementUserId(user.name))}
+                  onClick={
+                      () => dispatch(addUser(userName))
+                      //handleGoToTranslationClicked
+                      
+                    }
                   >
                     REDUX
                   </Button>
