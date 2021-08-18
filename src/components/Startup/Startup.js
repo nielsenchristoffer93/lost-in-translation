@@ -6,16 +6,46 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { Redirect, useHistory } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { setStorage, getStorage} from "../../storage";
+import {Redirect, useHistory} from "react-router-dom";
+import {useEffect, useState} from "react";
+import { setStorage, getStorage } from "../../storage";
 
 function Startup() {
   const history = useHistory();
-  const [shouldRedirect, setShouldRedirect] = useState(false)
-  /*const [username, setUsername] = useState({
-    username: ""
-  });*/
+  const [userName, setUserName] = useState("");
+  const [users, setUsers] = useState([]);
+  const [shouldReDirect, setShouldRedirect] = useState(false);
+
+  useEffect(()=>{
+
+    const checkForUser = () => {
+      if(!(getStorage('username') === false)){
+        setUserName(getStorage('username'));
+        for (let i = 0; i < users.length ; i++) {
+          if(users[i].name === userName){
+            console.log(users[i].name) // console log
+            //history.push("/translation");
+            setShouldRedirect(true)
+            break;
+          }
+        }
+      }
+    }
+
+    fetch('http://localhost:3000/users')
+        .then(res =>{
+          return res.json();
+        })
+        .then(data => setUsers(data))
+        .then(checkForUser)
+
+
+
+
+  },[userName])
+
+
+
 
   useEffect(() => {
     if (getStorage("username")) {
@@ -27,17 +57,38 @@ function Startup() {
     /*setUsername({
         [event.target.id]: event.target.value
       })*/
+    setUserName(event.target.value)
     setStorage("username", event.target.value);
+
   };
+
 
   const handleGoToTranslationClicked = () => {
     // Check if user exists in database, if it does, go to translation page.
+    if(!users.includes(userName)){
+    fetch('http://localhost:3000/users', {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: userName
+        //name: userName
+      })
+    })
+        .then( (response) => {
+          //do something awesome that makes the world a better place
+          console.log(response)
+        });
+    }
     // If it doesn't, add it to the database.
     history.push("/translation");
   };
 
   return (
     <main className="Startup">
+
       {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
       <Container>
         <Row className="center-row">

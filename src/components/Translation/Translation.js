@@ -8,6 +8,7 @@ import CardTranslation from "../hoc/CardTranslation";
 
 function Translation() {
 
+
   const [stringToTranslate, setStringToTranslate] = useState("");
   const [inputString, setInputString] = useState("");
 
