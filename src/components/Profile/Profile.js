@@ -5,9 +5,10 @@ import NavBarUser from "../hoc/NavBarUser";
 import CardTranslation from "../hoc/CardTranslation";
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
+import {useHistory} from "react-router-dom";
 
-function Translation() {
-
+function Profile() {
+  const history = useHistory();
   let [translations, setTranslations] = useState([])
 
   useEffect(() => {
@@ -16,6 +17,13 @@ function Translation() {
       .then((data) => setTranslations(data));
 
   }, [translations]);
+
+  useEffect(()=> {
+    if(!(sessionStorage.getItem('username'))){
+      //return <Redirect to="/"/>
+      history.push("/")
+    }
+  },[])
 
 
   function displayCardTranslations() {
@@ -44,4 +52,4 @@ function Translation() {
   );
 }
 
-export default Translation;
+export default Profile;

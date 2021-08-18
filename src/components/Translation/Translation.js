@@ -1,17 +1,26 @@
 import { Row, InputGroup, FormControl, Button, Card } from "react-bootstrap";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
 import SignImage from "./SignImage";
 import CardTranslation from "../hoc/CardTranslation";
 import { getStorage } from "../../storage"
+import {Redirect, useHistory} from "react-router-dom";
 
-function Translation() {
+function Translation(){
+  const history = useHistory();
   const [stringToTranslate, setStringToTranslate] = useState("");
   const [inputString, setInputString] = useState("");
 
   const [showCardTranslation, setShowCardTranslation] = useState(false);
+
+  useEffect(()=> {
+    if(!(sessionStorage.getItem('username'))){
+      //return <Redirect to="/"/>
+      history.push("/")
+    }
+  },[])
 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
