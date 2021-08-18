@@ -5,14 +5,12 @@ import { getStorage } from "../../storage";
 
 function NavBarUser() {
   const [username, setUsername] = useState();
-  const [shouldRedirect, setShouldRedirect] = useState(false)
 
   useEffect(() => {
     setUsername(getStorage("username"));
   }, []);
 
   function logout() {
-    setShouldRedirect(true);
     localStorage.clear();
     return <Redirect to="/"></Redirect>
   }
