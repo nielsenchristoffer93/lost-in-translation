@@ -17,7 +17,6 @@ function Translation(){
 
   useEffect(()=> {
     if(!(sessionStorage.getItem('username'))){
-      //return <Redirect to="/"/>
       history.push("/")
     }
   },[])
