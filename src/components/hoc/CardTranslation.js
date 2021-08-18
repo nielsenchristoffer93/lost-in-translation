@@ -7,7 +7,7 @@ function CardTranslation(props) {
     const [letterArray, setLetterArray] = useState([]);
 
     useEffect(() => {
-        setLetterArray(props.stringToTranslate.toLowerCase().split(""))
+        setLetterArray(props.stringToTranslate.replace(/[^a-zA-Z ]/g, "").toLowerCase().split(""))
     }, [props.stringToTranslate]);
 
     function displaySignImages() {
