@@ -11,25 +11,33 @@
     {
       "name": "Luis Gutierrez",
       "id": 3
+    },
+    {
+      "name": "Roberto",
+      "id": 4
     }
   ],
   "translations": [
     {
+      "id": 1,
       "user_id": 1,
       "phrase": "Hello aosdhiasdi asid haiuh diuai daig",
       "isDeleted": "true"
     },
     {
+      "id": 2,
       "user_id": 1,
       "phrase": "Kebab",
       "isDeleted": "true"
     },
     {
+      "id": 3,
       "user_id": 1,
       "phrase": "Goodbye",
       "isDeleted": "true"
     },
     {
+      "id": 4,
       "user_id": 2,
       "phrase": "Goodbye",
       "isDeleted": "false"
