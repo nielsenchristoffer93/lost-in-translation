@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import SignImage from "./SignImage";
+import {SignImage} from "./index";
 
-function CardTranslation(props) {
+const CardTranslation = (props) => {
 
     const [letterArray, setLetterArray] = useState([]);
 
@@ -10,15 +10,13 @@ function CardTranslation(props) {
         setLetterArray(props.stringToTranslate.replace(/[^a-zA-Z ]/g, "").toLowerCase().split(""))
     }, [props.stringToTranslate]);
 
-    function displaySignImages() {
+    const displaySignImages = () => {
       let listOfSignImages = []
-  
       letterArray.forEach((char) => {
         listOfSignImages.push(
           <SignImage letter={char}></SignImage>
         );
       });
-  
       return listOfSignImages;
     }
 
@@ -32,5 +30,5 @@ function CardTranslation(props) {
           </Card.Body>
         </Card>
     )
-
-} export default CardTranslation
+}
+export default CardTranslation

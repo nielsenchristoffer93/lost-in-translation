@@ -1,10 +1,9 @@
 import { Col, Row } from "react-bootstrap";
 import {Link, Redirect} from "react-router-dom";
-
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
 
-function NavBarUser() {
+const NavBarUser = () => {
   const [username, setUsername] = useState();
 
   useEffect(() => {
@@ -36,4 +35,5 @@ function NavBarUser() {
       </Col>
     </Row>
   );
-} export default NavBarUser;
+}
+export default NavBarUser;

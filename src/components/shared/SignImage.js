@@ -1,7 +1,6 @@
-function SignImage(props) {
+const SignImage = (props) => {
 
-  // Ugly solution?
-  function checkForWhitespace() {
+  const checkForWhitespace = () => {
     if (!props.letter.match(/[a-z]/i)) {
       console.log("Letter is Empty");
       return "whitespace";

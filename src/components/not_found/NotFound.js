@@ -1,7 +1,6 @@
-import NavBar from "../hoc/NavBar";
-import CenterContainer from "../hoc/CenterContainer";
+import {NavBar, CenterContainer} from "../shared/index"
 
-function NotFound() {
+const NotFound = () =>{
   return (
     <div>
       <NavBar></NavBar>

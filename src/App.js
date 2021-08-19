@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Startup from "./components/Startup/Startup";
-import NotFound from "./components/NotFound/NotFound";
-import Translation from "./components/Translation/Translation";
-import Profile from "./components/Profile/Profile";
+import Startup from "./components/startup/Startup";
+import NotFound from "./components/not_found/NotFound";
+import Translation from "./components/translation/Translation";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (

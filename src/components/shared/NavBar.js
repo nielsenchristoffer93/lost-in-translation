@@ -1,8 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CenterContainer from "./CenterContainer";
+import {CenterContainer} from "./index";
 
-function NavBar(props) {
+const NavBar = (props) => {
   return (
     <nav>
       <CenterContainer>

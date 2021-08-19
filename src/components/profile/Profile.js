@@ -1,13 +1,10 @@
 import { Button } from "react-bootstrap";
-import NavBar from "../shared/NavBar";
-import CenterContainer from "../shared/CenterContainer";
-import NavBarUser from "../shared/NavBarUser";
-import CardTranslation from "../shared/CardTranslation";
+import{NavBar, CenterContainer, NavBarUser, CardTranslation} from "../shared/index"
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
 import { useHistory, Redirect } from "react-router-dom";
 
-function Profile() {
+const Profile = () => {
   const history = useHistory();
   let [translations, setTranslations] = useState([]);
   let [shouldRedirect, setShouldRedirect] = useState(false);
@@ -21,7 +18,7 @@ function Profile() {
     fetchTranslations();
   }, []);
 
-  async function fetchTranslations() {
+   const fetchTranslations = async() => {
     await fetch(
       `http://localhost:3000/translations?username=${getStorage("username")}&isDeleted=false`
     )
@@ -32,9 +29,8 @@ function Profile() {
       });
   }
 
-  function displayCardTranslations() {
+  const displayCardTranslations = () => {
     let cards = [];
-    
     translations.forEach((translation) => {
       cards.push(
         <CardTranslation
@@ -42,18 +38,17 @@ function Profile() {
         ></CardTranslation>
       );
     });
-
     return cards;
   }
 
-  async function clearTranslations() {
+   const clearTranslations = async() => {
     for (let index = 0; index < translations.length; index++) {
       await patchIsDeleted(translations[index].id);
     }
     setTranslations([]);
   }
 
-  async function patchIsDeleted(translationId) {
+   const patchIsDeleted = async(translationId) => {
     await fetch(`http://localhost:3000/translations/${translationId}`, {
       method: "PATCH",
       headers: {

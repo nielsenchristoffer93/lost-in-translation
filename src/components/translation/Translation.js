@@ -1,20 +1,14 @@
 import { Row, InputGroup, FormControl, Button } from "react-bootstrap";
 import {useEffect, useState} from "react";
-
-import NavBar from "../shared/NavBar";
-import CenterContainer from "../shared/CenterContainer";
-import NavBarUser from "../shared/NavBarUser";
-import CardTranslation from "../shared/CardTranslation";
 import { getStorage } from "../../storage"
-import {Redirect, useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import {NavBar , CenterContainer, NavBarUser, CardTranslation} from "../shared/index"
 
-function Translation(){
-  const history = useHistory();
+const Translation = () => {
   const [stringToTranslate, setStringToTranslate] = useState("");
   const [inputString, setInputString] = useState("");
-  let [shouldRedirect, setShouldRedirect] = useState(false);
-
-  let [showCardTranslation, setShowCardTranslation] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [showCardTranslation, setShowCardTranslation] = useState(false);
 
   useEffect(()=> {
     if(!getStorage("username") || getStorage("username") === ""){
@@ -26,19 +20,17 @@ function Translation(){
     setStringToTranslate(event.target.value);
   };
 
-  
-
   const handleTranslateStringClick = () => {
     setInputString(stringToTranslate)
     setShowCardTranslation(true);
     postTranslationToDatabase();
   };
 
-  function displayCardTranslations() {
+  const displayCardTranslations = () => {
     return <CardTranslation stringToTranslate={inputString}></CardTranslation>
   }
 
-  function postTranslationToDatabase() {
+  const postTranslationToDatabase = () => {
       fetch("http://localhost:3000/translations", {
         method: "post",
         headers: {
@@ -54,7 +46,6 @@ function Translation(){
         console.error('Error:', error);
       });
   }
-
 
   return (
     <main className="Translation">
@@ -87,18 +78,6 @@ function Translation(){
           </InputGroup>
         </Row>
         {showCardTranslation ? displayCardTranslations() : null}
-        {/*<Card className="card-container">
-          <Card.Header>
-            <p>{stringToTranslate}</p>
-          </Card.Header>
-          <Card.Body>
-            {displaySignImages()}
-            {letterArray.map((char) => (
-              //<img src={i} alt={i + ".png"}></img>
-              <SignImage letter={char}></SignImage>
-            ))}
-          </Card.Body>
-        </Card>*/}
       </CenterContainer>
     </main>
   );
