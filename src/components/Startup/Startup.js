@@ -23,7 +23,24 @@ function Startup() {
     dispatch(addUser(userName))
     setName('');
   };
-
+  export const postUser = (userName) => {
+    fetch('http://localhost:3000/users', {
+        method: "post",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: userName
+            //name: userName
+        })
+    })
+        .then((response) => {
+            //do something awesome that makes the world a better place
+            console.log(response)
+        });
+        
+}
   const history = useHistory();
   /*const [username, setUsername] = useState({
     username: ""
@@ -69,7 +86,7 @@ function Startup() {
                     onChange={onInputChange}
                   />
                   <FormControl
-                    onSubmit ={handleSubmit}
+                    
                     className="input"
                     id="username"
                     placeholder="Redux Name?"
@@ -81,6 +98,7 @@ function Startup() {
                   <Button
                     variant="dark"
                     id="button-addon"
+                    
                     onClick={handleGoToTranslationClicked}
                   >
                     <span class="material-icons-sharp">arrow_forward</span>
@@ -88,9 +106,10 @@ function Startup() {
                   <Button
                   variant="dark"
                   id="button-addon"
+                  onSubmit ={handleSubmit}
                   onClick={
-                      () => dispatch(addUser(userName))
-                      //handleGoToTranslationClicked
+                      () => dispatch(addUser(userName)),
+                      handleGoToTranslationClicked
                       
                     }
                   >
