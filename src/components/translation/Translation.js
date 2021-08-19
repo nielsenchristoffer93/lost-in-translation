@@ -1,4 +1,4 @@
-import { Row, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Row, InputGroup, FormControl, Button, Alert } from "react-bootstrap";
 import {useEffect, useState} from "react";
 import { getStorage } from "../../storage"
 import {Redirect} from "react-router-dom";
@@ -9,6 +9,7 @@ const Translation = () => {
   const [inputString, setInputString] = useState("");
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [showCardTranslation, setShowCardTranslation] = useState(false);
+  const [postSuccessful, setPostSuccessful] = useState(false);
 
   useEffect(()=> {
     if(!getStorage("username") || getStorage("username") === ""){
@@ -24,6 +25,7 @@ const Translation = () => {
     setInputString(stringToTranslate)
     setShowCardTranslation(true);
     postTranslationToDatabase();
+    setPostSuccessful(true);
   };
 
   const displayCardTranslations = () => {
@@ -44,6 +46,7 @@ const Translation = () => {
         }),
       }).catch((error) => {
         console.error('Error:', error);
+        setPostSuccessful(false);
       });
   }
 
@@ -54,6 +57,9 @@ const Translation = () => {
         <NavBarUser></NavBarUser>
       </NavBar>
       <CenterContainer>
+        {postSuccessful ? <Alert variant="success">
+          Post successful!
+        </Alert>: null}
         <Row>
           <InputGroup>
             <FormControl
