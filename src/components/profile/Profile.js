@@ -20,7 +20,7 @@ const Profile = () => {
 
    const fetchTranslations = async() => {
     await fetch(
-      `http://localhost:3000/translations?username=${getStorage("username")}&isDeleted=false`
+      `https://json-server-lfgn.herokuapp.com/translations?username=${getStorage("username")}&isDeleted=false`
     )
       .then((response) => response.json())
       .then((data) => setTranslations(data))
@@ -49,7 +49,7 @@ const Profile = () => {
   }
 
    const patchIsDeleted = async(translationId) => {
-    await fetch(`http://localhost:3000/translations/${translationId}`, {
+    await fetch(`https://json-server-lfgn.herokuapp.com/translations/${translationId}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

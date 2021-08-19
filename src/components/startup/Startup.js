@@ -45,7 +45,7 @@ const Startup = () => {
 
   const handleGoToTranslationClicked = () => {
     if (!checkIfUsernameExistInListOfUserObjects()) {
-      fetch("http://localhost:3000/users", {
+      fetch("https://json-server-lfgn.herokuapp.com/users", {
         method: "post",
         headers: {
           Accept: "application/json",

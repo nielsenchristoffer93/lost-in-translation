@@ -33,7 +33,7 @@ const Translation = () => {
   }
 
   const postTranslationToDatabase = () => {
-      fetch("http://localhost:3000/translations", {
+      fetch("https://json-server-lfgn.herokuapp.com/translations", {
         method: "post",
         headers: {
           Accept: "application/json",
