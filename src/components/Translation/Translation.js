@@ -1,10 +1,10 @@
 import { Row, InputGroup, FormControl, Button } from "react-bootstrap";
 import {useEffect, useState} from "react";
 
-import NavBar from "../hoc/NavBar";
-import CenterContainer from "../hoc/CenterContainer";
-import NavBarUser from "../hoc/NavBarUser";
-import CardTranslation from "../hoc/CardTranslation";
+import NavBar from "../shared/NavBar";
+import CenterContainer from "../shared/CenterContainer";
+import NavBarUser from "../shared/NavBarUser";
+import CardTranslation from "../shared/CardTranslation";
 import { getStorage } from "../../storage"
 import {Redirect, useHistory} from "react-router-dom";
 
@@ -12,19 +12,21 @@ function Translation(){
   const history = useHistory();
   const [stringToTranslate, setStringToTranslate] = useState("");
   const [inputString, setInputString] = useState("");
-
+  let [shouldRedirect, setShouldRedirect] = useState(false);
 
   let [showCardTranslation, setShowCardTranslation] = useState(false);
 
   useEffect(()=> {
-    if(!(sessionStorage.getItem('username'))){
-      history.push("/")
+    if(!getStorage("username") || getStorage("username") === ""){
+      setShouldRedirect(true);
     }
   },[])
 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
   };
+
+  
 
   const handleTranslateStringClick = () => {
     setInputString(stringToTranslate)
@@ -56,6 +58,7 @@ function Translation(){
 
   return (
     <main className="Translation">
+      {shouldRedirect ? <Redirect to="/"></Redirect> : null}
       <NavBar>
         <NavBarUser></NavBarUser>
       </NavBar>
@@ -69,13 +72,17 @@ function Translation(){
               aria-label="text-to-translate"
               aria-describedby="basic-addon"
               onChange={onInputChange}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                  handleTranslateStringClick();
+                }}}
             />
             <Button
               variant="dark"
               id="stringToTranslate"
               onClick={handleTranslateStringClick}
             >
-              <span class="material-icons-sharp">arrow_forward</span>
+              <span className="material-icons-sharp">arrow_forward</span>
             </Button>
           </InputGroup>
         </Row>

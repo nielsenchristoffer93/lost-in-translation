@@ -29,8 +29,8 @@ function Startup() {
   function checkIfUsernameExistInListOfUserObjects() {
     let exists = false;
 
-    users.forEach(user => {
-      exists = (user.name === username) ? true : false;
+    users.forEach((user) => {
+      exists = user.name === username ? true : false;
     });
 
     return exists;
@@ -39,8 +39,8 @@ function Startup() {
   useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
-      .then((data) => setUsers(data))
-      //.then(checkIfUserExistInSessionStorage)
+      .then((data) => setUsers(data));
+    //.then(checkIfUserExistInSessionStorage)
 
     checkIfUserExistInSessionStorage();
   }, []);
@@ -69,7 +69,7 @@ function Startup() {
           name: username,
         }),
       }).catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
     }
     // If it doesn't, add it to the database.
@@ -102,13 +102,18 @@ function Startup() {
                     aria-label="username"
                     aria-describedby="basic-addon"
                     onChange={onInputChange}
+                    onKeyPress={event => {
+                      if (event.key === "Enter") {
+                        handleGoToTranslationClicked();
+                      }}}
+                    
                   />
                   <Button
                     variant="dark"
                     id="button-addon"
                     onClick={handleGoToTranslationClicked}
                   >
-                    <span class="material-icons-sharp">arrow_forward</span>
+                    <span className="material-icons-sharp">arrow_forward</span>
                   </Button>
                 </InputGroup>
               </Col>

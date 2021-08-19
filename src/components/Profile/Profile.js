@@ -1,91 +1,88 @@
 import { Button } from "react-bootstrap";
-import NavBar from "../hoc/NavBar";
-import CenterContainer from "../hoc/CenterContainer";
-import NavBarUser from "../hoc/NavBarUser";
-import CardTranslation from "../hoc/CardTranslation";
+import NavBar from "../shared/NavBar";
+import CenterContainer from "../shared/CenterContainer";
+import NavBarUser from "../shared/NavBarUser";
+import CardTranslation from "../shared/CardTranslation";
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
-import {useHistory} from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 function Profile() {
   const history = useHistory();
-  let [translations, setTranslations] = useState([])
+  let [translations, setTranslations] = useState([]);
+  let [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/translations?username=${getStorage("username")}`)
-      .then((response) => response.json())
-      .then((data) => setTranslations(data));
 
+    if (!getStorage("username") || getStorage("username") === "") {
+      setShouldRedirect(true);
+    }
+
+    fetchTranslations();
   }, []);
 
-
-  useEffect(()=> {
-    if(!(sessionStorage.getItem('username'))){
-      history.push("/")
-    }
-  },[])
-
-
-
-
+  async function fetchTranslations() {
+    await fetch(
+      `http://localhost:3000/translations?username=${getStorage("username")}&isDeleted=false`
+    )
+      .then((response) => response.json())
+      .then((data) => setTranslations(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
 
   function displayCardTranslations() {
+    let cards = [];
+    
+    translations.forEach((translation) => {
+      cards.push(
+        <CardTranslation
+          stringToTranslate={translation.phrase}
+        ></CardTranslation>
+      );
+    });
 
-    let cards = []
-    let filteredCards = filterCardTranslations();
-    filteredCards.forEach(filteredCard => {
-      cards.push(<CardTranslation stringToTranslate={filteredCard.phrase}></CardTranslation>)
-    })
     return cards;
-  
   }
 
-  function filterCardTranslations() {
-    let filteredCards = []
-    translations.forEach(translation => {
-      if (translation.isDeleted === false) {
-        filteredCards.push(translation);
-      }
-    }); 
-    return filteredCards;
+  async function clearTranslations() {
+    for (let index = 0; index < translations.length; index++) {
+      await patchIsDeleted(translations[index].id);
+    }
+    setTranslations([]);
   }
 
-  function clearTranslations(){
-    let idS = [];
-    translations.forEach(translation => idS.push(translation.id))
-    idS.forEach(id => patchIsDeleted(id))
-
-    fetch(`http://localhost:3000/translations?username=${getStorage("username")}`)
-        .then((response) => response.json())
-        .then((data) => setTranslations(data));
-
-
-  }
-
-  function patchIsDeleted(id){
-    fetch(`http://localhost:3000/translations/${id}`, {
-    method:'PATCH',
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-        },
-      body: JSON.stringify({isDeleted: true}),
-    }).then(response => response.json())
-        .then(json => console.log(json))
+  async function patchIsDeleted(translationId) {
+    await fetch(`http://localhost:3000/translations/${translationId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(
+        { 
+          isDeleted: true 
+        }),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   return (
     <main className="Translation">
+      {shouldRedirect ? <Redirect to="/"></Redirect> : null}
       <NavBar>
         <NavBarUser></NavBarUser>
       </NavBar>
       <CenterContainer>
         <div className="d-grid gap-2">
-          <Button onClick={clearTranslations} variant="dark">Clear Translations</Button>
+          <Button onClick={clearTranslations} variant="dark">
+            Clear Translations
+          </Button>
         </div>
         {displayCardTranslations()}
-        {/*<CardTranslation stringToTranslate={"Test"}></CardTranslation>
-        <CardTranslation stringToTranslate={"Apa"}></CardTranslation>
-        <CardTranslation stringToTranslate={"Hejsan"}></CardTranslation>*/}
       </CenterContainer>
     </main>
   );

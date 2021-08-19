@@ -25,12 +25,12 @@ function NavBarUser() {
       </Col>
       <Col xs={2}>
         <Link to="/profile">
-          <span class="material-icons-sharp">account_circle</span>
+          <span className="material-icons-sharp">account_circle</span>
         </Link>
       </Col>
       <Col xs={2}>
         <Link to="/">
-          <span class="material-icons-sharp" onClick={LogOut}>logout</span>
+          <span className="material-icons-sharp" onClick={LogOut}>logout</span>
 
         </Link>
       </Col>

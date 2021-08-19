@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import SignImage from "../Translation/SignImage";
+import SignImage from "./SignImage";
 
 function CardTranslation(props) {
 
