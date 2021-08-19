@@ -13,20 +13,12 @@
       "id": 3
     },
     {
-      "name": "Roberto",
+      "name": "Christoffer",
       "id": 4
     },
     {
       "name": "Hejsan",
       "id": 5
-    },
-    {
-      "name": "Christoffer",
-      "id": 6
-    },
-    {
-      "name": "Luis",
-      "id": 7
     }
   ],
   "translations": [
@@ -101,6 +93,30 @@
       "phrase": "Hejsan",
       "isDeleted": false,
       "id": 12
+    },
+    {
+      "username": "Christoffer",
+      "phrase": "Test",
+      "isDeleted": false,
+      "id": 13
+    },
+    {
+      "username": "Christoffer",
+      "phrase": "Testar lite till",
+      "isDeleted": false,
+      "id": 14
+    },
+    {
+      "username": "Christoffer",
+      "phrase": "jAg gillar apor",
+      "isDeleted": false,
+      "id": 15
+    },
+    {
+      "username": "Hejsan",
+      "phrase": "Hejsan",
+      "isDeleted": false,
+      "id": 16
     }
   ]
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Startup from "./components/Startup/Startup";
 import NotFound from "./components/NotFound/NotFound";
 import Translation from "./components/Translation/Translation";

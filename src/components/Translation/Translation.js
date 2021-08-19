@@ -1,17 +1,16 @@
-import { Row, InputGroup, FormControl, Button, Card } from "react-bootstrap";
+import { Row, InputGroup, FormControl, Button } from "react-bootstrap";
 import { useState } from "react";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
-import SignImage from "./SignImage";
 import CardTranslation from "../hoc/CardTranslation";
 import { getStorage } from "../../storage"
 
 function Translation() {
-  const [stringToTranslate, setStringToTranslate] = useState("");
-  const [inputString, setInputString] = useState("");
+  let [stringToTranslate, setStringToTranslate] = useState("");
+  let [inputString, setInputString] = useState("");
 
-  const [showCardTranslation, setShowCardTranslation] = useState(false);
+  let [showCardTranslation, setShowCardTranslation] = useState(false);
 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
@@ -39,9 +38,8 @@ function Translation() {
           phrase: stringToTranslate,
           isDeleted: false
         }),
-      }).then((response) => {
-        //do something awesome that makes the world a better place
-        console.log(response);
+      }).catch((error) => {
+        console.error('Error:', error);
       });
   }
 

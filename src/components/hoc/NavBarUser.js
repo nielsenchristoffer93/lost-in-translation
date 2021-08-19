@@ -36,5 +36,4 @@ function NavBarUser() {
       </Col>
     </Row>
   );
-}
-export default NavBarUser;
+} export default NavBarUser;

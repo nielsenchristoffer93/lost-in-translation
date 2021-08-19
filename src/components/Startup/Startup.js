@@ -6,23 +6,34 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { setStorage, getStorage } from "../../storage";
 
 function Startup() {
-  const [userName, setUserName] = useState("");
+  let [username, setUsername] = useState("");
   let [users, setUsers] = useState([]);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  let [shouldRedirect, setShouldRedirect] = useState(false);
 
   function checkIfUserExistInSessionStorage() {
     if (getStorage("username")) {
-      users.forEach((user) => {
+      setShouldRedirect(true);
+      /*users.forEach((user) => {
         if (userName === user.name) {
           setShouldRedirect(true);
         }
-      });
+      });*/
     }
+  }
+
+  function checkIfUsernameExistInListOfUserObjects() {
+    let exists = false;
+
+    users.forEach(user => {
+      exists = (user.name === username) ? true : false;
+    });
+
+    return exists;
   }
 
   useEffect(() => {
@@ -31,19 +42,22 @@ function Startup() {
       .then((data) => setUsers(data));
 
     checkIfUserExistInSessionStorage();
-  }, [users]);
+  }, []);
 
+  /*
   useEffect(() => {
     setUserName(getStorage("username"))
   }, [])
+  */
 
   const onInputChange = (event) => {
+    setUsername(event.target.value);
     setStorage("username", event.target.value);
   };
 
   const handleGoToTranslationClicked = () => {
     // Check if user exists in database, if it does, go to translation page.
-    if (!users.includes(userName) && userName) {
+    if (!checkIfUsernameExistInListOfUserObjects()) {
       fetch("http://localhost:3000/users", {
         method: "post",
         headers: {
@@ -51,12 +65,10 @@ function Startup() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: userName,
-          //name: userName
+          name: username,
         }),
-      }).then((response) => {
-        //do something awesome that makes the world a better place
-        console.log(response);
+      }).catch((error) => {
+        console.error('Error:', error);
       });
     }
     // If it doesn't, add it to the database.

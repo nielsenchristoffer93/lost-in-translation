@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
@@ -15,15 +15,32 @@ function Translation() {
       .then((response) => response.json())
       .then((data) => setTranslations(data));
 
-  }, [translations]);
+  }, []);
 
 
   function displayCardTranslations() {
+
     let cards = []
+    let filteredCards = filterCardTranslations();
+    filteredCards.forEach(filteredCard => {
+      cards.push(<CardTranslation stringToTranslate={filteredCard.phrase}></CardTranslation>)
+    })
+    return cards;
+    /*let cards = []
     translations.forEach(translation => {
       cards.push(<CardTranslation stringToTranslate={translation.phrase}></CardTranslation>);
     });
-    return cards;
+    return cards;*/
+  }
+
+  function filterCardTranslations() {
+    let filteredCards = []
+    translations.forEach(translation => {
+      if (translation.isDeleted === false) {
+        filteredCards.push(translation);
+      }
+    }); 
+    return filteredCards;
   }
 
   return (
