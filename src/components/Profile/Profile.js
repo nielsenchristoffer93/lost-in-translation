@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import NavBar from "../hoc/NavBar";
 import CenterContainer from "../hoc/CenterContainer";
 import NavBarUser from "../hoc/NavBarUser";
@@ -18,6 +18,7 @@ function Profile() {
 
   }, []);
 
+
   useEffect(()=> {
     if(!(sessionStorage.getItem('username'))){
       history.push("/")
@@ -25,13 +26,28 @@ function Profile() {
   },[])
 
 
+
+
+
   function displayCardTranslations() {
-    let filteredTranslations = translations.filter(translation => translation.isDeleted === false);
+
     let cards = []
-    filteredTranslations.forEach(translation => {
-      cards.push(<CardTranslation stringToTranslate={translation.phrase}></CardTranslation>);
-    });
+    let filteredCards = filterCardTranslations();
+    filteredCards.forEach(filteredCard => {
+      cards.push(<CardTranslation stringToTranslate={filteredCard.phrase}></CardTranslation>)
+    })
     return cards;
+  
+  }
+
+  function filterCardTranslations() {
+    let filteredCards = []
+    translations.forEach(translation => {
+      if (translation.isDeleted === false) {
+        filteredCards.push(translation);
+      }
+    }); 
+    return filteredCards;
   }
 
   function clearTranslations(){
