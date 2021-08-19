@@ -5,10 +5,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {Provider} from 'react-redux';
-import userApp from './store/user.js';
-import { createStore } from "redux";
+import userApp from './store/reducers/userReducer.js';
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { appReducer } from "./store/reducers/appReducer";
 
-const store = createStore(userApp);
+const store = createStore(appReducer, composeWithDevTools(applyMiddleware()));
 
 ReactDOM.render(
   <React.StrictMode>

@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { setStorage } from "../../storage";
 import { useDispatch, useSelector } from "react-redux";
-import {addUser} from "../../store/user";
+import {addUser} from "../../store/reducers/userReducer";
 
 
 function Startup() {

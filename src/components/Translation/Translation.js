@@ -10,7 +10,6 @@ function Translation() {
   let listOfSignImages = [];
 
   const [stringToTranslate, setStringToTranslate] = useState("");
-
   const [letterArray, setLetterArray] = useState([]);
 
   const onInputChange = (event) => {

@@ -6,18 +6,10 @@ const INCREMENT_USER_ID = 'INCREMENT_USER_ID';
 const user_id = {};
 
 
-/*export function addUser(user){
-    return{
-        type: ADD_USER,
-        user
-    }
-}
-*/
 export const addUser = (username) => ({
     type: 'ADD_USER',
     payload: username,
 });
-
 
 
 const defaultUsers = [
@@ -32,8 +24,8 @@ function users(state = [], action){
             return[
                 ...state,
                 {
-                    user_id: state.length  + 1, //must update
-                    name: action.payload
+                    users:[ state.length  + 1, action.payload]
+            
                 }
             ];
         
