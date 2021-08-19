@@ -26,25 +26,25 @@
       "id": 1,
       "username": "Hejsan",
       "phrase": "Hello aosdhiasdi asid haiuh diuai daig",
-      "isDeleted": "true"
+      "isDeleted": false
     },
     {
       "id": 2,
       "username": "Hejsan",
       "phrase": "Kebab",
-      "isDeleted": "true"
+      "isDeleted": false
     },
     {
       "id": 3,
       "username": "Hejsan",
       "phrase": "Goodbye",
-      "isDeleted": "true"
+      "isDeleted": false
     },
     {
       "id": 4,
       "username": "Hejsan",
       "phrase": "Goodbye",
-      "isDeleted": "false"
+      "isDeleted": false
     },
     {
       "username": "Hejsan",

@@ -39,7 +39,8 @@ function Startup() {
   useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
-      .then((data) => setUsers(data));
+      .then((data) => setUsers(data))
+      //.then(checkIfUserExistInSessionStorage)
 
     checkIfUserExistInSessionStorage();
   }, []);
