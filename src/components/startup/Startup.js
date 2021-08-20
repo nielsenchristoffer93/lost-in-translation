@@ -14,13 +14,18 @@ const Startup = () => {
   let [username, setUsername] = useState("");
   let [users, setUsers] = useState([]);
   let [shouldRedirect, setShouldRedirect] = useState(false);
-
+  /**
+   * Checks if a user exists in the curent session, if they do not then the setRedirect flag is set to true
+   */
   const checkIfUserExistInSessionStorage = () => {
     if (getStorage("username")) {
       setShouldRedirect(true);
     }
   }
-
+  /**
+   * Checks if the current user already exists within the database, so that duplicates are not created
+   * @returns Whether or not the username exists, true or false
+   */
   const  checkIfUsernameExistInListOfUserObjects = () => {
     let exists = false;
 
@@ -30,19 +35,27 @@ const Startup = () => {
 
     return exists;
   }
-
+  /**
+   * React hook running at mount. 
+   * Retrieves user data from the database and applies a check to see if the new user alraedy exists
+   */
   useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
       .then((data) => setUsers(data));
     checkIfUserExistInSessionStorage();
   }, []);
-
+  /**
+   * Saves to storage the string data that the user inputs as their username
+   * @param {*} event Input from the user in the input form
+   */
   const onInputChange = (event) => {
     setUsername(event.target.value);
     setStorage("username", event.target.value);
   };
-
+  /**
+   * Checks whether the user is saved to the database, then if true sends them to the translation page, otherwise they are redirected back to starpage
+   */
   const handleGoToTranslationClicked = () => {
     if (!checkIfUsernameExistInListOfUserObjects()) {
       fetch("http://localhost:3000/users", {
@@ -86,7 +99,9 @@ const Startup = () => {
                     placeholder="What's your name?"
                     aria-label="username"
                     aria-describedby="basic-addon"
+                    {/* On Input change call to add username.*/}
                     onChange={onInputChange}
+                    {/* On Key press event to call handleGoToTranslationClicked. */}
                     onKeyPress={event => {
                       if (event.key === "Enter") {
                         handleGoToTranslationClicked();
@@ -96,6 +111,7 @@ const Startup = () => {
                   <Button
                     variant="dark"
                     id="button-addon"
+                     {/* On Click event to call handleGoToTranslationClicked. */}
                     onClick={handleGoToTranslationClicked}
                   >
                     <span className="material-icons-sharp">arrow_forward</span>

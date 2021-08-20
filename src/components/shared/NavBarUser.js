@@ -2,14 +2,25 @@ import { Col, Row } from "react-bootstrap";
 import {Link, Redirect} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getStorage } from "../../storage";
-
+/**
+ * Custom NavBar component.
+ * @returns NavBarUser component
+ */
 const NavBarUser = () => {
   const [username, setUsername] = useState();
-
+  /**
+   * Sets the username to the currently logged in user's user name
+   * 
+   */
   useEffect(() => {
     setUsername(getStorage("username"));
   }, []);
-
+  /**
+   * Clears all session storage on Logout
+   * 
+   * @returns Redirect to Startup page
+   */
+  
   const LogOut = () =>{
       sessionStorage.clear();
       return <Redirect to="/"/>
