@@ -2,10 +2,9 @@ import {Button} from "react-bootstrap";
 import {NavBar, CenterContainer, NavBarUser, CardTranslation} from "../shared/index"
 import {useState, useEffect} from "react";
 import {getStorage} from "../../storage";
-import {Redirect/*, useHistory*/} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 const Profile = () => {
-    //const history = useHistory();
     let [translations, setTranslations] = useState([]);
     let [shouldRedirect, setShouldRedirect] = useState(false);
 
@@ -17,7 +16,6 @@ const Profile = () => {
 
         if (!getStorage("username") || getStorage("username") === "") {
             setShouldRedirect(true);
-            //history.goBack();
         } else {
             fetchTranslations();
         }
