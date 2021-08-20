@@ -10,28 +10,28 @@ const Translation = () => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [showCardTranslation, setShowCardTranslation] = useState(false);
   const [postSuccessful, setPostSuccessful] = useState(false);
-
+    //Checks if user is logged in or if username is blank, if no user is logged in then setRedirect flag becomes true
   useEffect(()=> {
     if(!getStorage("username") || getStorage("username") === ""){
       setShouldRedirect(true);
     }
   },[])
-
+  //Sets the string to be translated to the value inputted by user in the input 
   const onInputChange = (event) => {
     setStringToTranslate(event.target.value);
   };
-
+  //Handles the onClick event so that the input string is stored, the translation will be shown, posted of data can occur, and the succesful post alert is triggered
   const handleTranslateStringClick = () => {
     setInputString(stringToTranslate)
     setShowCardTranslation(true);
     postTranslationToDatabase();
     setPostSuccessful(true);
   };
-
+  //Displays the translation images based upon the input 
   const displayCardTranslations = () => {
     return <CardTranslation stringToTranslate={inputString}></CardTranslation>
   }
-
+  //Posts the translation data to the translation database
   const postTranslationToDatabase = () => {
       fetch("http://localhost:3000/translations", {
         method: "post",
