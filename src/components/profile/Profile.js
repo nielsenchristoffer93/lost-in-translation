@@ -2,10 +2,10 @@ import {Button} from "react-bootstrap";
 import {NavBar, CenterContainer, NavBarUser, CardTranslation} from "../shared/index"
 import {useState, useEffect} from "react";
 import {getStorage} from "../../storage";
-import {Redirect, useHistory} from "react-router-dom";
+import {Redirect/*, useHistory*/} from "react-router-dom";
 
 const Profile = () => {
-    const history = useHistory();
+    //const history = useHistory();
     let [translations, setTranslations] = useState([]);
     let [shouldRedirect, setShouldRedirect] = useState(false);
 
@@ -16,8 +16,8 @@ const Profile = () => {
     useEffect(() => {
 
         if (!getStorage("username") || getStorage("username") === "") {
-            //setShouldRedirect(true);
-            history.goBack();
+            setShouldRedirect(true);
+            //history.goBack();
         } else {
             fetchTranslations();
         }
@@ -90,11 +90,10 @@ const Profile = () => {
             });
     }
 
-    //{shouldRedirect ? <Redirect to="/"></Redirect> : null}
-
     return (
         <main className="Translation">
             {/* If statement for checking if we should redirect or not */}
+            {shouldRedirect ? <Redirect to="/"></Redirect> : null}
             <NavBar>
                 <NavBarUser></NavBarUser>
             </NavBar>
