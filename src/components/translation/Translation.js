@@ -51,7 +51,7 @@ const Translation = () => {
      * Posts the translation data to the translation database on the specific user.
      */
     const postTranslationToDatabase = () => {
-        fetch("https://json-server-lfgn.herokuapp.com/translations", {
+        fetch("https://lost-in-translation-assignment.herokuapp.com/api/translations", {
             method: "post",
             headers: {
                 Accept: "application/json",

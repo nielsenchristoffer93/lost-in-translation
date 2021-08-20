@@ -40,7 +40,7 @@ const Startup = () => {
    * Retrieves user data from the database and applies a check to see if the new user alraedy exists
    */
   useEffect(() => {
-    fetch("https://json-server-lfgn.herokuapp.com/users")
+    fetch("https://lost-in-translation-assignment.herokuapp.com/api/users")
         .then((response) => response.json())
         .then((data) => setUsers(data));
     checkIfUserExistInSessionStorage();
@@ -58,7 +58,7 @@ const Startup = () => {
    */
   const handleGoToTranslationClicked = () => {
     if (!checkIfUsernameExistInListOfUserObjects()) {
-      fetch("https://json-server-lfgn.herokuapp.com/users", {
+      fetch("https://lost-in-translation-assignment.herokuapp.com/api/users", {
         method: "post",
         headers: {
           Accept: "application/json",
