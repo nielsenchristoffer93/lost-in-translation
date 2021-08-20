@@ -8,16 +8,15 @@ const Profile = () => {
   const history = useHistory();
   let [translations, setTranslations] = useState([]);
   let [shouldRedirect, setShouldRedirect] = useState(false);
-
+  //Checks if user is logged in or if username is blank, if no user is logged in then setRedirect flag becomes true
   useEffect(() => {
 
     if (!getStorage("username") || getStorage("username") === "") {
       setShouldRedirect(true);
     }
-
     fetchTranslations();
   }, []);
-
+  //Retrieves stored json objects from the translations database, if they match the current user's username and are not "deleted"
    const fetchTranslations = async() => {
     await fetch(
       `http://localhost:3000/translations?username=${getStorage("username")}&isDeleted=false`
@@ -28,7 +27,7 @@ const Profile = () => {
         console.error('Error:', error);
       });
   }
-
+  //Displays an array of cards, each containing the translated string retrieved from the database
   const displayCardTranslations = () => {
     let cards = [];
     translations.forEach((translation) => {
@@ -40,14 +39,14 @@ const Profile = () => {
     });
     return cards;
   }
-
+  //Applies a patch to all translations which have a value of "isDeleted = false"
    const clearTranslations = async() => {
     for (let index = 0; index < translations.length; index++) {
       await patchIsDeleted(translations[index].id);
     }
     setTranslations([]);
   }
-
+  //Patches a specific translation based upon it's id, setting "isDeleted" to true
    const patchIsDeleted = async(translationId) => {
     await fetch(`http://localhost:3000/translations/${translationId}`, {
       method: "PATCH",
