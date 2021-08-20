@@ -12,8 +12,6 @@ Is using the https://github.com/typicode/json-server as a database in the backen
 
 Can be accessed on:
 https://json-server-lfgn.herokuapp.com/
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 To fetch all users in database, use the following command:  
 https://json-server-lfgn.herokuapp.com/users
