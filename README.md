@@ -16,7 +16,7 @@ https://json-server-lfgn.herokuapp.com/
 To fetch all users in database, use the following command:  
 https://json-server-lfgn.herokuapp.com/users
 
-To fetch all translations in databasem, use the following command:
+To fetch all translations in databasem, use the following command:  
 https://json-server-lfgn.herokuapp.com/translations
 
 
