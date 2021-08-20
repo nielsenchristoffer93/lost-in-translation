@@ -2,6 +2,23 @@
 
 An online sign language translator as a Single Page Application using the React framework.
 
+Is using the https://github.com/typicode/json-server as a database in the backend.
+
+## Startup 🌟
+
+You will first be displayed with a start-page. On this page you will need to supply a name (for loggin in).  
+Otherwise you won't be able to reach the translation and profile page.
+
+## Translation 👈☝🖐🤙🤘🖖🤞✌
+
+When you've succesfully "logged in" you can start to translate words and sentances.  
+This will then translate each letter in the word to the appropriate sign in sign-language and be saved to your translations (which can be viewed on the profile page).
+
+## Profile 🙋‍♂️
+
+On this page you can view your previous translations and as well as clearing all previous translations.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
