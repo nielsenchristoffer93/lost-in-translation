@@ -5,11 +5,11 @@ import {SignImage} from "./index";
 const CardTranslation = (props) => {
 
     const [letterArray, setLetterArray] = useState([]);
-
+    //Normalizes the string to be translated to better match the individual images supplied
     useEffect(() => {
         setLetterArray(props.stringToTranslate.replace(/[^a-zA-Z ]/g, "").toLowerCase().split(""))
     }, [props.stringToTranslate]);
-
+    //Itereates over the string to be translated and retrieves the specific character to be translated
     const displaySignImages = () => {
       let listOfSignImages = []
       letterArray.forEach((char) => {

@@ -14,13 +14,13 @@ const Startup = () => {
   let [username, setUsername] = useState("");
   let [users, setUsers] = useState([]);
   let [shouldRedirect, setShouldRedirect] = useState(false);
-
+  //Checks if a user exists in the curent session, if they do not then the setRedirect flag is set to true
   const checkIfUserExistInSessionStorage = () => {
     if (getStorage("username")) {
       setShouldRedirect(true);
     }
   }
-
+  // Checks if the current user already exists within the database, so that duplicates are not created
   const  checkIfUsernameExistInListOfUserObjects = () => {
     let exists = false;
 
@@ -30,19 +30,19 @@ const Startup = () => {
 
     return exists;
   }
-
+  //Retrieves user data from the database and applies a check to see if the new user alraedy exists
   useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((response) => response.json())
       .then((data) => setUsers(data));
     checkIfUserExistInSessionStorage();
   }, []);
-
+  //Saves to storage the string data that the user inputs into the input field as their username
   const onInputChange = (event) => {
     setUsername(event.target.value);
     setStorage("username", event.target.value);
   };
-
+  //Checks whether the user is saved to the database, then if true sends them to the translation page, otherwise they are redirected back to starpage
   const handleGoToTranslationClicked = () => {
     if (!checkIfUsernameExistInListOfUserObjects()) {
       fetch("http://localhost:3000/users", {

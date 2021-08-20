@@ -5,11 +5,11 @@ import { getStorage } from "../../storage";
 
 const NavBarUser = () => {
   const [username, setUsername] = useState();
-
+  //Sets the username to the currently logged in user's user name
   useEffect(() => {
     setUsername(getStorage("username"));
   }, []);
-
+  //Clears all session storage on Logout, and redirects to the startup page
   const LogOut = () =>{
       sessionStorage.clear();
       return <Redirect to="/"/>
