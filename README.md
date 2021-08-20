@@ -2,13 +2,25 @@
 
 An online sign language translator as a Single Page Application using the React framework.
 
-Is using the https://github.com/typicode/json-server as a database in the backend.
+
 
 Link to Heroku project:  
 https://lost-in-translation-assignment.herokuapp.com/translation
 
-Link to database API:
+## Database API:  
+Is using the https://github.com/typicode/json-server as a database in the backend.
+
+Can be accessed on:
 https://json-server-lfgn.herokuapp.com/
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+To fetch all users in database, use the following command:  
+https://json-server-lfgn.herokuapp.com/users
+
+To fetch all translations in databasem, use the following command:
+https://json-server-lfgn.herokuapp.com/translations
+
 
 ## Startup 🌟
 
