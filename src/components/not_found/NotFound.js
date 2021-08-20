@@ -1,5 +1,11 @@
 import {NavBar, CenterContainer} from "../shared/index"
 
+/**
+ * NotFound page (component) for displaying a custom message to the user.
+ * Instead of showing a generic 404 error.
+ * 
+ * @returns NotFound component
+ */
 const NotFound = () =>{
   return (
     <div>
