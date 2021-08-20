@@ -18,7 +18,7 @@ const Translation = () => {
     useEffect(() => {
         if (!getStorage("username") || getStorage("username") === "") {
             //setShouldRedirect(true);
-            history.push("/");
+            history.goBack();
         }
     }, [])
 
@@ -53,7 +53,7 @@ const Translation = () => {
      * Posts the translation data to the translation database on the specific user.
      */
     const postTranslationToDatabase = () => {
-        fetch("https://lost-in-translation-assignment.herokuapp.com/api/translations", {
+        fetch("https://json-server-lfgn.herokuapp.com/translations", {
             method: "post",
             headers: {
                 Accept: "application/json",

@@ -17,7 +17,7 @@ const Profile = () => {
 
         if (!getStorage("username") || getStorage("username") === "") {
             //setShouldRedirect(true);
-            history.push("/");
+            history.goBack();
         } else {
             fetchTranslations();
         }
@@ -29,7 +29,7 @@ const Profile = () => {
      */
     const fetchTranslations = async () => {
         await fetch(
-            `https://lost-in-translation-assignment.herokuapp.com/api/translations?username=${getStorage("username")}&isDeleted=false`
+            `https://json-server-lfgn.herokuapp.com/translations?username=${getStorage("username")}&isDeleted=false`
         )
             .then((response) => response.json())
             .then((data) => setTranslations(data))
@@ -74,7 +74,7 @@ const Profile = () => {
      * @param {*} translationId Id of object in database to be patched.
      */
     const patchIsDeleted = async (translationId) => {
-        await fetch(`https://lost-in-translation-assignment.herokuapp.com/api/translations/${translationId}`, {
+        await fetch(`https://json-server-lfgn.herokuapp.com/translations/${translationId}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
