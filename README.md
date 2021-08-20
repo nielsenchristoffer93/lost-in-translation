@@ -7,7 +7,7 @@ Is using the https://github.com/typicode/json-server as a database in the backen
 ## Startup 🌟
 
 You will first be displayed with a start-page. On this page you will need to supply a name (for loggin in).  
-Otherwise you won't be able to reach the translation and profile page.
+Otherwise you won't be able to reach the translation and profile page.<br>
 
 ## Translation 👈☝🖐🤙🤘🖖🤞✌
 
