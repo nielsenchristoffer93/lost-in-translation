@@ -5,6 +5,13 @@ import NotFound from "./components/not_found/NotFound";
 import Translation from "./components/translation/Translation";
 import Profile from "./components/profile/Profile";
 
+/**
+ * React-Router is implemented to bring navigation functionality to our application.
+ * The app is divided in 3 views: 'Startup', 'Translation' and 'Profile'. A fourth view
+ * called 'Not Found' is presented when the user navigates to a wrong path in our application.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function App() {
   return (
     <BrowserRouter>
