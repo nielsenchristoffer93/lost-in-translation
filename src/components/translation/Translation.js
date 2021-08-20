@@ -1,10 +1,11 @@
 import {Row, InputGroup, FormControl, Button, Alert} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {getStorage} from "../../storage"
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import {NavBar, CenterContainer, NavBarUser, CardTranslation} from "../shared/index"
 
 const Translation = () => {
+    const history = useHistory();
     const [stringToTranslate, setStringToTranslate] = useState("");
     const [inputString, setInputString] = useState("");
     const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -16,7 +17,8 @@ const Translation = () => {
      */
     useEffect(() => {
         if (!getStorage("username") || getStorage("username") === "") {
-            setShouldRedirect(true);
+            //setShouldRedirect(true);
+            history.push("/");
         }
     }, [])
 
@@ -68,10 +70,12 @@ const Translation = () => {
         });
     }
 
+// {shouldRedirect ? <Redirect to="/"></Redirect> : null}
+
     return (
         <main className="Translation">
             {/* If statement for checking if we should redirect or not */}
-            {shouldRedirect ? <Redirect to="/"></Redirect> : null}
+            
             <NavBar>
                 <NavBarUser></NavBarUser>
             </NavBar>
