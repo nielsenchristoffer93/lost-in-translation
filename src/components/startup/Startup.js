@@ -6,9 +6,9 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { setStorage, getStorage } from "../../storage";
+import {Redirect} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {setStorage, getStorage} from "../../storage";
 
 const Startup = () => {
   let [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ const Startup = () => {
    * Checks if the current user already exists within the database, so that duplicates are not created
    * @returns Whether or not the username exists, true or false
    */
-  const  checkIfUsernameExistInListOfUserObjects = () => {
+  const checkIfUsernameExistInListOfUserObjects = () => {
     let exists = false;
 
     users.forEach((user) => {
@@ -36,13 +36,13 @@ const Startup = () => {
     return exists;
   }
   /**
-   * React hook running at mount. 
+   * React hook running at mount.
    * Retrieves user data from the database and applies a check to see if the new user alraedy exists
    */
   useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then((response) => response.json())
-      .then((data) => setUsers(data));
+    fetch("https://json-server-lfgn.herokuapp.com/users")
+        .then((response) => response.json())
+        .then((data) => setUsers(data));
     checkIfUserExistInSessionStorage();
   }, []);
   /**
@@ -58,7 +58,7 @@ const Startup = () => {
    */
   const handleGoToTranslationClicked = () => {
     if (!checkIfUsernameExistInListOfUserObjects()) {
-      fetch("http://localhost:3000/users", {
+      fetch("https://json-server-lfgn.herokuapp.com/users", {
         method: "post",
         headers: {
           Accept: "application/json",
@@ -75,55 +75,56 @@ const Startup = () => {
   };
 
   return (
-    <main className="Startup">
-      {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
-      <Container>
-        <Row className="center-row">
-          <Col xs={3}></Col>
-          <Col xs={6}>
-            <Row>
-              <Col xs={3} className="icon-col">
-                <span className="material-icons-sharp icon">translate</span>
-              </Col>
-              <Col xs={9}>
-                <h1>Lost in Translation</h1>
-                <p>Get started</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <InputGroup className="input-container">
-                  <FormControl
-                    className="input"
-                    id="username"
-                    placeholder="What's your name?"
-                    aria-label="username"
-                    aria-describedby="basic-addon"
-                    {/* On Input change call to add username.*/}
-                    onChange={onInputChange}
-                    {/* On Key press event to call handleGoToTranslationClicked. */}
-                    onKeyPress={event => {
-                      if (event.key === "Enter") {
-                        handleGoToTranslationClicked();
-                      }}}
-                    
-                  />
-                  <Button
-                    variant="dark"
-                    id="button-addon"
-                     {/* On Click event to call handleGoToTranslationClicked. */}
-                    onClick={handleGoToTranslationClicked}
-                  >
-                    <span className="material-icons-sharp">arrow_forward</span>
-                  </Button>
-                </InputGroup>
-              </Col>
-            </Row>
-          </Col>
-          <Col xs={3}></Col>
-        </Row>
-      </Container>
-    </main>
+      <main className="Startup">
+        {shouldRedirect ? <Redirect to="/translation"></Redirect> : null}
+        <Container>
+          <Row className="center-row">
+            <Col xs={3}></Col>
+            <Col xs={6}>
+              <Row>
+                <Col xs={3} className="icon-col">
+                  <span className="material-icons-sharp icon">translate</span>
+                </Col>
+                <Col xs={9}>
+                  <h1>Lost in Translation</h1>
+                  <p>Get started</p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <InputGroup className="input-container">
+                    <FormControl
+                        className="input"
+                        id="username"
+                        placeholder="What's your name?"
+                        aria-label="username"
+                        aria-describedby="basic-addon"
+                        // On Input change call to add username.
+                        onChange={onInputChange}
+                        // On Key press event to call handleGoToTranslationClicked.
+                        onKeyPress={event => {
+                          if (event.key === "Enter") {
+                            handleGoToTranslationClicked();
+                          }
+                        }}
+
+                    />
+                    <Button
+                        variant="dark"
+                        id="button-addon"
+                        // On Click event to call handleGoToTranslationClicked.
+                        onClick={handleGoToTranslationClicked}
+                    >
+                      <span className="material-icons-sharp">arrow_forward</span>
+                    </Button>
+                  </InputGroup>
+                </Col>
+              </Row>
+            </Col>
+            <Col xs={3}></Col>
+          </Row>
+        </Container>
+      </main>
   );
 }
 
