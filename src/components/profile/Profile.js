@@ -72,7 +72,7 @@ const Profile = () => {
      * @param {*} translationId Id of object in database to be patched.
      */
     const patchIsDeleted = async (translationId) => {
-        await fetch(`https://json-server-lfgn.herokuapp.com/translations/${translationId}`, {
+        await fetch(`https://json-server-lfgn.herokuapp.com/api/translations/${translationId}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",
